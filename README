@@ -1,0 +1,3 @@
+Collaborative TeX synopsis for the lecture "Scientific Computing" at FH Wedel university of applied sciences.
+
+The Makefile uses rubber ( https://launchpad.net/rubber/ ) to build the pdf output.
