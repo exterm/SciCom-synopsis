@@ -45,7 +45,11 @@
 
 
 \section{Definition}
-Scientific Computing
+Scientific Computing ist
+\begin{itemize}
+  \item numerische Simulation
+  \item Lösung numerischer Probleme aus verschiedenen wissenschaftlichen Disziplinen
+\end{itemize}
 
 
 
@@ -53,7 +57,35 @@ Scientific Computing
 
 
 \subsection{Reelle Zahlen}
---- hier Text einfügen ---
+
+\subsubsection*{Repräsentation}
+\begin{itemize}
+  \item Im Rechner üblicherweise Teilmenge der reellen Zahlen benutzt: Gleitkommazahlen
+  \item Gleitkomma-Repräsentation einer reellen Zahl verlustbehaftet, ``beschnittene Zahl''
+\end{itemize}
+\begin{description}
+  \item[Darstellung] durch
+    \begin{itemize}
+      \item Vorzeichen
+      \item Basis
+      \item Mantisse
+      \item Exponent
+    \end{itemize}
+  \item[Rundungsfehler] beim Repräsentieren
+    \begin{itemize}
+      \item \(|x-fl(x)|/|x| \le 1/2 \epsilon_M\)
+      \item \(\epsilon_M = \beta^{1-t}\) gibt Abstand zwischen 1 und der nächsten Gleitkommazahl größer 1 an
+      \item \(\epsilon_M\) in MATLAB durch das Kommando \texttt{eps} bestimmbar
+    \end{itemize}
+\end{description}
+
+\subsubsection*{Eingeschränkte Gesetze}
+\begin{itemize}
+  \item Kommutativität gilt
+  \item die 0 ist nicht eindeutig
+  \item Assoziativität und Distributivität gelten nicht!\\
+    z.B. bei Rechnungen die an die Ränder des Zahlenbereichs gehen
+\end{itemize}
 
 
 \subsection{Komplexe Zahlen}
