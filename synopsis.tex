@@ -17,7 +17,7 @@
 \usepackage{enumitem}
 
 %\sloppy
-\setlength{\parindent}{8pt}
+\setlength{\parindent}{0pt}
 \setlist[description]{itemindent=-30pt, leftmargin=50pt, itemsep=.5em}
 
 \pagestyle{fancy}
@@ -87,17 +87,27 @@ Scientific Computing ist
     z.B. bei Rechnungen die an die Ränder des Zahlenbereichs gehen
 \end{itemize}
 
+\subsubsection*{Auslöschen signifikanter Stellen}
+Wenn man zwei Gleitkommazahlen addiert, die ähnliche Absolutwerte haben, aber gegenätzliches Vorzeichen, wird das Ergebnis ungenau.
+
+Beispiel:
+\begin{align*}
+x = 1e-15\\
+\Rightarrow ((1+x)-1)/x = 1.1102
+\end{align*}
+11\% Fehler!
+
 
 \subsection{Komplexe Zahlen}
---- hier Text einfügen ---
+--- Nur simple Wiederholung und MATLAB ---
 
 
 \subsection{Matrizen}
---- hier Text einfügen ---
+--- Nur simple Wiederholung und MATLAB ---
 
 
 \subsection{Vektoren}
---- hier Text einfügen ---
+--- Nur simple Wiederholung und MATLAB ---
 
 
 
@@ -110,7 +120,11 @@ Scientific Computing ist
 
 
 \subsection{Bisektionsverfahren}
---- hier Text einfügen ---
+\begin{itemize}
+  \item sei \(f\) Funktion über \([a,b]\), \(f(a)\timesf(b)<0\)
+  \item Also mindestens eine Nullstelle in \([a,b]\)
+  \item Bisektion geht von genau einer Nullstelle aus
+\end{itemize}
 
 
 \subsection{Newton-Verfahren}
