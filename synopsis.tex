@@ -73,7 +73,7 @@ Scientific Computing ist
     \end{itemize}
   \item[Rundungsfehler] beim Repräsentieren
     \begin{itemize}
-      \item \(|x-fl(x)|/|x| \le 1/2 \epsilon_M\)
+      \item \(|x-fl(x)|/|x| \le \frac{1}{2} \epsilon_M\)
       \item \(\epsilon_M = \beta^{1-t}\) gibt Abstand zwischen 1 und der nächsten Gleitkommazahl größer 1 an
       \item \(\epsilon_M\) in MATLAB durch das Kommando \texttt{eps} bestimmbar
     \end{itemize}
@@ -93,7 +93,7 @@ Wenn man zwei Gleitkommazahlen addiert, die ähnliche Absolutwerte haben, aber g
 Beispiel:
 \begin{align*}
 x = 1e-15\\
-\Rightarrow ((1+x)-1)/x = 1.1102
+\Rightarrow \frac{((1+x)-1)}{x} = 1.1102
 \end{align*}
 11\% Fehler!
 
