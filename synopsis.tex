@@ -120,31 +120,107 @@ x = 1e-15\\
 
 
 \subsection{Bisektionsverfahren}
+
+\subsubsection*{Verfahren}
 \begin{itemize}
-  \item sei \(f\) Funktion über \([a,b]\), \(f(a)\times f(b)<0\)
+  \item sei \(f\) stetige Funktion über \([a,b]\), \(f(a)\times f(b)<0\)
   \item Also mindestens eine Nullstelle in \([a,b]\)
   \item Bisektion geht von genau einer Nullstelle aus
+  \item Algorithmus:
+    \begin{enumerate}
+      \item teile das Interval in zwei gleich große Teilintervalle
+      \item fahre mit dem Interval, dessen Grenzen funktionswerte mit verschiedenen Vorzeichen haben, fort
+      \item goto 1
+    \end{enumerate}
 \end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item Fehler nicht monoton fallend, die Näherung kann mit weiteren Schritten auch schlechter werden
+  \item unabhängig von Verlauf der Funktion, könnte deshalb effizienter sein (Beispiel Gerade)
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item einfache Implementierung, betrachtet Funktion als ``Black Box''
+\end{itemize}
+
+\subsubsection*{Abbruch}
+Erfolgt bei Erreichung gewünschter Toleranz.\\
+Anzahl erforderlicher Schritte:
+\[k_{min} > log_2(\frac{b-a}{\epsilon})-1\]
+
+\subsubsection*{Konvergenz}
+Die Bisektion konvergiert immer.
 
 
 \subsection{Newton-Verfahren}
---- hier Text einfügen ---
+
+\subsubsection*{Verfahren}
+\begin{itemize}
+  \item Verwendung der Ableitung der Funktion
+  \item Algorithmus:
+    \begin{enumerate}
+      \item Starte mit einem beliebigen Punkt \(x_0\) (\(k=0\))
+      \item Bestimme die Tangente \(T\) im Punkt \(x_k\)
+      \item \(x_{k+1} = T^{-1}(0)\)
+      \item \(k=k+1\), goto 2
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection*{Abbruch}
+Mögliche Kriterien:
+\begin{itemize}
+  \item nach willkürlich festgelegter Iterationszahl --- keine Aussage über Fehler machbar
+  \item Abschätzen des Fehlers durch Differenz zweier aufeinanderfolgender Näherungswerte --- funktioniert ``gut'' bei einfachen Nullstellen
+  \item \emph{Residuum} (Funktionswert am Näherungswert) unterschreitet Toleranz --- problematisch, da von Steigung der Funktion in der Nähe der Nullstelle abhängig
+\end{itemize}
+
+\subsubsection*{Konvergenz}
+\begin{itemize}
+  \item konvergiert für lineare Funktionen in einem Schritt
+  \item allgemein konvergiert das Verfahren nicht immer, der Startpunkt muss \emph{nahe genug} an der Nullstelle sein --- das ist abhängig von der Funktion
+  \item Idee: Mittels einiger Bisektionsschritte nahe genug an die Nullstelle kommen, dann mit Newton verfeinern
+\end{itemize}
 
 
 \subsection{Fixpunkt-Iteration}
---- hier Text einfügen ---
+
+\subsubsection*{Verfahren}
+\begin{itemize}
+  \item Methode zum Finden von Fixpunkten einer Funktion \(f\)
+  \item Algorithmus:
+    \begin{enumerate}
+      \item \(f\) wird auf einen Startwert angewendet
+      \item \(f\) wird auf das Ergebnis angewendet
+      \item goto 2
+    \end{enumerate}
+  \item Das Newton-Verfahren lässt sich als Fixpunkt-Iteration über die Funktion
+    \[\phi(x) = x-\frac{f(x)}{f'(x)}\]
+    darstellen
+\end{itemize}
+
+\subsubsection*{Abbruch}
+Wenn die absolute Differenz zweier aufeinanderfolgender Näherungen unter einem Toleranzwert liegt. Die Abschätzung des Fehlers nach dieser Methode ist umso genauer, je näher \(\phi'(\alpha)\) an 1 liegt.
+
+\subsubsection*{Konvergenz}
+\begin{itemize}
+  \item TODO komplizierte Bedingungen
+\end{itemize}
 
 
 \subsection{Algebraische Polynome}
---- hier Text einfügen ---
+--- hier Text einfügen --- TODO
 
 
 \subsection{Newton-Horner-Verfahren}
---- hier Text einfügen ---
+--- hier Text einfügen --- TODO
 
 
 
 \section{Numerisches Differenzieren}
+
+
+\subsection{Problem}
+Habe Funktionswerte an mehreren Stellen aber keine Funktionsdefinition, möchte Änderungsrate (Ableitung) approximieren.
 
 
 \subsection{Taylor-Entwicklung}

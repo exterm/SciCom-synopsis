@@ -1,0 +1,15 @@
+SC_02
+--
+S. 6: Schrittzahl-Formel --- warum -1 ?
+S. 14: Was bedeutet "konvergiert quadratisch"? Mit Blick auf die nächste Folie scheint quadratische Konvergenz besser zu sein als lineare...
+
+SC_03
+--
+S. 8: Wann konvergiert die Fixpunkt-Iteration und wann konvergiert sie nicht?
+S. 9: "Weil cos stetig ist..." Warum genau? Weil *sin* stetig ist...?
+S. 11: Widerspruch? Soll Phi nun 0 oder 1 sein?
+S. 12-20: Wie hängt das alles zusammen?
+
+allgemein
+--
+MATLAB-Folien signifikant?
