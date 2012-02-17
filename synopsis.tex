@@ -202,9 +202,15 @@ Mögliche Kriterien:
 Wenn die absolute Differenz zweier aufeinanderfolgender Näherungen unter einem Toleranzwert liegt. Die Abschätzung des Fehlers nach dieser Methode ist umso genauer, je näher \(\phi'(\alpha)\) an 1 liegt.
 
 \subsubsection*{Konvergenz}
+Schwierig zu bewerten. Sicher konvergiert die Fixpunkt-Iteration aber, wenn diese Bedingungen erfüllt sind:
 \begin{itemize}
-  \item TODO komplizierte Bedingungen
+  \item Betrachte Funktion \(\phi\) auf einem Intervall \([a,b]\)
+  \item \(\phi\) ist in \([a,b]\) differenzierbar
+  \item \(\forall x \in [a,b]: \phi(x) \in [a,b]\)
+  \item \(\forall x \in [a,b]: |\phi'(x)|<1\)\\
+    TODO ist das so? Mysteriöses K...
 \end{itemize}
+\(\phi\) besitzt dann genau einen Fixpunkt im Intervall \([a,b]\) und die Fixpunkt-Iteration konvergiert unabhängig von der Wahl des Startwerts (der allerdings im Intervall liegen muss).
 
 
 \subsection{Algebraische Polynome}
