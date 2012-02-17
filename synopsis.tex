@@ -193,7 +193,7 @@ Mögliche Kriterien:
 \end{itemize}
 
 \subsubsection*{Abbruch}
-Wenn die absolute Differenz zweier aufeinanderfolgender Näherungen unter einem Toleranzwert liegt. Die Abschätzung des Fehlers nach dieser Methode ist umso genauer, je näher \(\phi'(\alpha)\) an 1 liegt.
+Wenn die absolute Differenz zweier aufeinanderfolgender Näherungen unter einem Toleranzwert liegt. Die Abschätzung des Fehlers nach dieser Methode ist umso genauer, je näher \(|\phi'(\alpha)|\) an 0 liegt.
 
 \subsubsection*{Konvergenz}
 Schwierig zu bewerten. Sicher konvergiert die Fixpunkt-Iteration aber, wenn diese Bedingungen erfüllt sind:
@@ -201,18 +201,41 @@ Schwierig zu bewerten. Sicher konvergiert die Fixpunkt-Iteration aber, wenn dies
   \item Betrachte Funktion \(\phi\) auf einem Intervall \([a,b]\)
   \item \(\phi\) ist in \([a,b]\) differenzierbar
   \item \(\forall x \in [a,b]: \phi(x) \in [a,b]\)
-  \item \(\forall x \in [a,b]: |\phi'(x)|<1\)\\
-    TODO ist das so? Mysteriöses K...
+  \item \(\forall x \in [a,b]: |\phi'(x)|<1\)
 \end{itemize}
 \(\phi\) besitzt dann genau einen Fixpunkt im Intervall \([a,b]\) und die Fixpunkt-Iteration konvergiert unabhängig von der Wahl des Startwerts (der allerdings im Intervall liegen muss).
 
 
-\subsection{Algebraische Polynome}
---- hier Text einfügen --- TODO
-
-
 \subsection{Newton-Horner-Verfahren}
---- hier Text einfügen --- TODO
+
+\subsubsection*{Algebraische Polynome}
+\begin{itemize}
+  \item Nullstellen von Polynomen mit Grad größer 5 sind umständlich zu berechnen
+  \item Suche nach effizienter Methode
+\end{itemize}
+
+\subsubsection*{Horner-Schema}
+Das Horner-Schema beschreibt die Umformung eines Polynoms in eine \emph{geschachtelte Multiplikation}, um das Auswerten zu vereinfachen. Es kann genutzt werden, um die Polynomdivision sowie die Berechnung von Nullstellen und Ableitungen zu vereinfachen.
+
+Das Verfahren zum Auswerten eines Polynoms nach dem Horner-Schema, die \emph{synthetische Division}, erlaubt es, zu einem Polynom \(p_n(x)\) für ein beliebiges \(z\) aus dem Definitionsbereich von \(p_n\) ohne großen Mehraufwand nicht nur \(p_n(z)\), sondern auch \(p_n'(z)\) und \(\frac{p_n(x)}{x-z}\) (das \emph{assoziierte Polynom}) zu berechnen.
+
+Das assoziierte Polynom \(q_{n-1,z}\) lässt sich definieren als das Ergebnis einer Division von \(p_n\) durch \((x-z)\) ohne Rest.
+
+Die Herleitung zu dieser ``Magie'' gibt es in der Ausarbeitung von Ulf Sauer.
+
+Hinweis: Ist \(z\) eine Nullstelle von \(p_n\), so hat das berechnete assoziierte Polynom alle Nullstellen von \(p_n\) außer \(z\) (``Polynomdivision durch Nullstelle'' aus der Analysis bekannt!).
+
+\subsubsection*{Verfahren}
+Das Newton-Horner-Verfahren wird genutzt, um alle Nullstellen eines Polynoms \(n\)-ten Grades \(p_n(x)\) zu finden. Idee:
+\begin{enumerate}
+  \item Berechnen einer Nullstelle \(z\) durch das Newton-Verfahren
+  \item Berechnen des assoziierten Polynoms \(q_{n-1,z}\) (hat die restlichen Nullstellen, aber geringeren Grad)
+  \item fahre mit \(q_{n-1,z}\) bei Punkt 1 fort, es sei denn, \(q_{n-1,z}\) ist konstant
+\end{enumerate}
+Dabei muss in jedem Schritt des Newton-Verfahrens an einer Stelle \(x\) sowohl das Polynom als auch seine Ableitung ausgewertet werden (Tangentensteigung). Die synthetische Division kann hier beide Auswertungen übernehmen und dazu gleich noch das assoziierte Polynom liefern, mit dem im Fall einer gefundenen Nullstelle direkt weitergemacht werden kann, um die nächste Nullstelle zu finden.
+
+Die synthetische Division des Horner-Schemas spart hier also reichlich Berechnungsarbeit.
+
 
 
 
