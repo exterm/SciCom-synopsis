@@ -2,6 +2,11 @@ SC_02
 --
 S. 14: Was bedeutet "konvergiert quadratisch"? Mit Blick auf die nächste Folie scheint quadratische Konvergenz besser zu sein als lineare...
 
+SC_04
+--
+Was soll man zur Taylor-Entwicklung wissen?
+S. 6: Was ist eine "Approximation erster Ordnung"?
+
 allgemein
 --
 ipython-geschichten signifikant!
