@@ -257,8 +257,13 @@ Entfernung der Punkte (\(x\)-Differenzen) sind im vornherein als \(h\) festgeleg
 \subsection{Taylor-Entwicklung}
 Näherungsweise Darstellung einer Funktion, die über die Funktionswerte der ersten n Ableitungen an einer Stelle konstruiert wird.
 
-Damit kann eine Fehlerabschätzung für numerische Differenziationsverfahren definiert werden.
-
+Damit kann eine Fehlerabschätzung für numerische Differenziationsverfahren definiert werden. Beispiel Vorwärtsdifferenz:
+\begin{enumerate}
+  \item Taylor-Entwicklung erster Ordnung um \((x+h)\) (ergibt alternative Darstellung für \(f(x+h)\))
+  \item Einsetzen in Definition der Vorwärtsdifferenz \(\delta_+f\)
+  \item Auflösen nach dem Fehler: \((\delta_+f)(x) - f'(x) = \frac{h}{2}f''(\xi)\)
+\end{enumerate}
+Also ist die Vorwärtsdifferenz eine Approximation erster Ordnung (linearer Fehler).
 
 
 \section{Numerisches Integrieren}
