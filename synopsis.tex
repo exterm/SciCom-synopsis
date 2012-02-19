@@ -330,16 +330,43 @@ Genauigkeitsordnung 4, Exaktheitsgrad 3
 \section{Lineare Systeme}
 
 
+\subsection{Problemstellung}
+Lösung linearer Gleichungssysteme sehr aufwändig wenn System genügend groß
+
+
 \subsection{LU-Faktorisierung}
---- hier Text einfügen ---
+
+\subsubsection*{Idee}
+Statt \(Ax=b\) zu lösen, wird
+\[A=LU\]
+\[Ly=b\]
+\[Ux=y\]
+gelöst, wobei \(L\) eine untere und \(U\) eine obere Dreiecksmatrix ist. Der Trick ist dabei die Zerlegung von \(A\) in \(L\) und \(U\). Die Gleichungssysteme aus den Dreiecksmatrizen lassen sich leicht lösen (jeweils \(n^2\) Operationen).
+
+\subsubsection*{Gauß-Faktorisierung}
 
 
 \subsection{Gauß-Faktorisierung}
---- hier Text einfügen ---
+\begin{itemize}
+  \item Erzeugen von \(L\) und \(U\) in einer Matrix
+  \item Diagonale von \(L\) kann ignoriert werden, denn ihre Elemente können aufgrund der Unterbestimmung von \(A=LU\) frei gesetzt werden. Setze alle auf 1 um eine Division zu sparen
+  \item Gaußsches Zeilenstufenverfahren erzeugt \(U\)
+  \item zusätzlich werden die Faktoren, die zum Eliminieren einzelner Felder verwendet werden, in diese Felder eingetragen
+  \item diese Faktoren bilden die Elemente von \(L\) und werden im weiteren Verlauf des Zeilenstufenverfahrens ignoriert (überlesen)
+  \item die Gauß-Faktorisierung ist nicht immer möglich, da evtl.\ die Pivot-Elemente (Elemente der Diagonalen) im Laufe des Verfahrens \(=0\) werden und nicht mehr durch diese geteilt werden kann
+\end{itemize}
 
 
 \subsection{Pivoting}
---- hier Text einfügen ---
+\begin{itemize}
+  \item wenn das nächste Pivot-Element 0 ist, einfach Zeilen tauschen --- sorgt dafür, dass Gauß-Faktorisierung immer funktioniert
+  \item um die Genauigkeit bei der Verwendung von Gleitkommazahlen zu erhöhen, ist es sinnvoll, in jedem Schritt eine Zeilenvertauschung vorzunehmen --- und zwar so, dass das nächste Pivot-Element den größtmöglichen Wert hat
+  \item um mit den Zeilenvertauschungen das Ergebnis der LU-Zerlegung nicht zu verfälschen, wird eine zusätzliche Pivot-Matrix \(P\) nach dem Schema
+    \[
+    PA=LU
+    \]
+    eingeführt. Diese entsteht aus einer Einheitsmatrix, in der dieselben Zeilenvertauschungen vorgenommen werden, wie in der Matrix \(A\) während der Faktorisierung.
+\end{itemize}
 
 
 
