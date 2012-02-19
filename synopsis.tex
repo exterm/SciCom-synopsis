@@ -446,7 +446,7 @@ Genauigkeitsordnung 4, Exaktheitsgrad 3
 \section{Leistungsmaße}
 
 
-\subsection{Allgemein}
+\subsection{Problemstellung}
 Ziele der Parallelisierung:
 \begin{itemize}
   \item Reduktion der Laufzeit, kürzere Wartezeit bis zum Ergebnis
@@ -485,13 +485,74 @@ Reduktion der Laufzeit einer parallelen Lösung bezogen auf die sequentielle Var
 \[
 S_p(n) = \frac{T'(n)}{T_p(n)}
 \]
-Der Speedup ist normalerweise durch die Anzahl der Prozessoren begrenzt (\(S_p(n)\le p\))
 \begin{description}
   \item[\(T'(n)\)] Laufzeit des schnellsten bekannten sequentiellen Algorithmus
   \item[\(T_1(n)\)] Laufzeit des parallelen Algorithmus auf einem Prozessor (üblicherweise größer als \(T'(n)\))
   \item[\(S_p(n)=p\)] linearer Speedup
   \item[\(S_p(n)>p\)] superlinearer Speedup
 \end{description}
+\begin{itemize}
+  \item der Speedup ist normalerweise durch die Anzahl der Prozessoren begrenzt (\(S_p(n)\le p\))
+  \item der reale Speedup unterscheidet sich vom linearen Speedup um die Overheadzeit \(T_{CWS}\)
+\end{itemize}
+
+
+\subsection{Kosten}
+\begin{itemize}
+  \item Maß für die von allen Prozessoren durchgeführte Arbeit\\
+    \[C_p(n)=T_p(n)\cdot p\]
+  \item \emph{kostenoptimal} ist ein paralleles Programm, wenn es genau so viele Operationen ausführt wie das entsprechende sequentielle Programm (Laufzeit \(:=\) Anzahl Operationen)\\
+    \[C_p(n)=T'(n)\]
+\end{itemize}
+
+
+\subsection{Kosten-Overhead}
+\begin{itemize}
+  \item Differenz zwischen den Kosten eines parallelen und des entsprechenden sequentiellen Programms\\
+    \[H_p(n)=C_p(n)-T'(n) = p\cdot T_p(n) - T'(n)\]
+  \item \((H_p(n)=0)\Rightarrow\) Programm ist kostenoptimal
+\end{itemize}
+
+
+\subsection{Effizienz}
+\begin{itemize}
+  \item Maß für die Laufzeitverkürzung auf \(p\) Prozessoren
+  \item Speedup relativ zu Prozessorzahl\\
+    \[E_p(n)=\frac{S_p(n)}{p}=\frac{T'(n)}{p\cdot T_p(n)}=\frac{T'(n)}{C_p(n)}\]
+\end{itemize}
+
+
+\subsection{Amdahls Gesetz}
+Definiert obere Schranke für erreichbaren Speedup. Prinzip:
+\begin{itemize}
+  \item Abschätzung von zwangsweise sequentiellem Anteil \(f\) und parallelisierbarem Anteil \(1-f\)
+  \item Aussage über Gesamtlaufzeit:
+    \[
+    T_p(n)\ge f\cdot T'(n) + \frac{(1-f)\cdot T'(n)}{p}
+    \]
+  \item Aussage über Speedup:
+    \[S_p(n)\le\frac{1}{f+\frac{1-f}{p}}\]
+  \item mit beliebig vielen Prozessoren (\(p\rightarrow\infty\)) liesse sich maximal erreichen:
+    \[S_p(n)\le \frac{1}{f}\]
+  \item Das ist ein theoretischer Wert, Amdahl argumentierte, dass mit zunehmender Prozessorzahl der Speedup sogar irgendwann wieder sinkt, aufgrund übermäßigen Overheads
+  \item Amdahl geht von maximal linearem Speedup aus (für 20-fachen Speedup brauche ich mindestens 20 Prozessoren, selbst bei idealer Parallelisierbarkeit, also \(f=0\))
+\end{itemize}
+
+
+\subsection{Gustafsons Gesetz}
+Betrachtet Speedup anders: Wie wirkt sich die Anzahl der Prozessoren auf die Problemgröße aus, die in gegebener Zeit abgearbeitet werden kann?
+\begin{itemize}
+  \item Annahme: der sequentielle Anteil verkleinert sich mit zunehmender Problemgröße
+  \item Sei \(f_1\) der sequentielle Anteil bei einer feste Problemgröße und der Bearbeitung auf einem Prozessor, dann gilt laut Gustafson:
+    \[f=\frac{f_1}{p\cdot (1-f_1) +f_1}\]
+    Mit Amdahls Gesetz folgt
+    \[S_p(n)\le p\cdot (1-f_1)+f_1\]
+    Unter der Voraussetzung, dass die Gesamtlaufzeit gleich bleibt und die Problemgröße entsprechend mit der Zahl der Prozessoren steigt, ist also der Speedup durch Erhöhung der Prozessorenzahl nahezu linear.
+\end{itemize}
+
+
+\subsection{Skalierbarkeit}
+Eine Anwendung heisst \emph{skalierbar}, wenn die zur Problemlösung benötigte Zeit bei wachsender Problemgröße durch Erhöhung der Zahl der beteiligten Prozessoren konstant gehalten werden kann.
 
 
 
