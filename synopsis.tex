@@ -270,19 +270,60 @@ Also ist die Vorwärtsdifferenz eine Approximation erster Ordnung (linearer Fehl
 
 
 \subsection{Problem}
---- hier Text einfügen ---
+\begin{itemize}
+  \item Bestimmung einer Stammfunktion \(F\) zu einer beliebigen Funktion \(f\) nicht möglich
+  \item eventuell liegt \(f\) auch garnicht vor, sondern nur ein paar Funktionswerte
+  \item numerische (genäherte) Lösung für bestimmtes Intervall gesucht
+  \item Idee: stückweise Annäherung von \(f\) durch Polynome
+\end{itemize}
 
 
 \subsection{Mittelpunktformel}
---- hier Text einfügen ---
+
+\subsubsection*{Verfahren}
+\begin{itemize}
+  \item Ablauf:
+    \begin{enumerate}
+      \item Unterteile Intervall in gleich große Teilintervalle
+      \item approximiere \(f\) in jedem Teilintervall durch Konstante: Funktionswert in der Mitte des Teilintervalls
+      \item summiere Flächen der Rechtecke aus Teilintervallgröße und Ap\-pro\-xi\-mie\-rungs-Kon\-stan\-te
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection*{Fehler}
+Fehler der Ordnung 2 (quadratischer Fehler) bezüglich der Teilintervallbreite
+
+\subsubsection*{Exaktheitsgrad}
+Der Exaktheitsgrad sagt aus, bis zu welchem Grad Polynome mit einem Verfahren exakt integriert werden können.
+
+Die Mittelpunktformel hat einen Exaktheitsgrad von 1. Konstante und lineare Funktionen können exakt integriert werden.
 
 
 \subsection{Trapezformel}
---- hier Text einfügen ---
+
+\subsubsection*{Verfahren}
+Wie Mittelpunktformel, aber Approximation der Teilintervalle nicht durch Konstanten sondern Geraden. Dazu werden die Funktionswerte an den Teilintervallgrenzen bestimmt.
+
+\subsubsection*{Fehler}
+Ordnung 2, Exaktheitsgrad 1 (wie Mittelpunktformel)
+
+
+\subsection{Gaußsche Quadraturformel}
+
+\subsubsection*{Verfahren}
+Wie Trapezformel, aber Aufteilung des Intervalls nicht äquidistant sondern an Gauss-Knoten
+
+\subsubsection*{Fehler}
+Genauigkeitsordnung 4, Exaktheitsgrad 3
 
 
 \subsection{Simpson-Formel}
---- hier Text einfügen ---
+
+\subsubsection*{Verfahren}
+Approximation des Teilintervalls durch eine Parabel (Polynom vom Grad 2), die durch die Funktionswerte an den Rändern und in der Mitte des Intervalls gelegt wird.
+
+\subsubsection*{Fehler}
+Genauigkeitsordnung 4, Exaktheitsgrad 3
 
 
 

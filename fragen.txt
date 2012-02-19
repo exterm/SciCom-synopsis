@@ -4,8 +4,7 @@ S. 14: Was bedeutet "konvergiert quadratisch"? Mit Blick auf die nächste Folie 
 
 SC_04
 --
-Was soll man zur Taylor-Entwicklung wissen?
-S. 6: Was ist eine "Approximation erster Ordnung"?
+(Approximation mit Genauigkeitsordnung n == Approximation der Ordnung n)?
 
 allgemein
 --
