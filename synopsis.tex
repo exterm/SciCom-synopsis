@@ -446,12 +446,52 @@ Genauigkeitsordnung 4, Exaktheitsgrad 3
 \section{Leistungsmaße}
 
 
+\subsection{Allgemein}
+Ziele der Parallelisierung:
+\begin{itemize}
+  \item Reduktion der Laufzeit, kürzere Wartezeit bis zum Ergebnis
+  \item genauere Lösung in der gleichen Laufzeit
+  \item größere Datenmengen in der gleichen Laufzeit
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\Large{?}}%
+  \item Messbarkeit des Erfolgs
+  \item Mögliche Maße
+\end{itemize}
+
+
 \subsection{Laufzeit}
---- hier Text einfügen ---
+Messung der Laufzeit eines Programmablaufs auf der Zielhardware
+\begin{description}
+  \item[Laufzeit]~\\
+    Zeit zwischen Start und Ende der Abarbeitung des Programms auf allen beteiligten Prozessoren, zusammengesetzt aus
+    \begin{itemize}
+      \item Rechenzeit \(T_{CPU}\)
+      \item Kommunikationszeit \(T_{COM}\)
+      \item Wartezeit \(T_{WAIT}\)
+      \item Synchronisationszeit \(T_{SYN}\)
+      \item Platzierungszeit \(T_{place}\)
+      \item Startzeit \(T_{start}\)
+    \end{itemize}
+  \item[Overhead-Zeit]~\\
+    \(T_{CWS}=T_{COM}+T_{WAIT}+T_{SYN}\)
+  \item[Rüstzeit]~\\
+    \(T_{setup}=T_{place}+T_{start}\)
+\end{description}
 
 
 \subsection{Speedup}
---- hier Text einfügen ---
+Reduktion der Laufzeit einer parallelen Lösung bezogen auf die sequentielle Variante
+\[
+S_p(n) = \frac{T'(n)}{T_p(n)}
+\]
+Der Speedup ist normalerweise durch die Anzahl der Prozessoren begrenzt (\(S_p(n)\le p\))
+\begin{description}
+  \item[\(T'(n)\)] Laufzeit des schnellsten bekannten sequentiellen Algorithmus
+  \item[\(T_1(n)\)] Laufzeit des parallelen Algorithmus auf einem Prozessor (üblicherweise größer als \(T'(n)\))
+  \item[\(S_p(n)=p\)] linearer Speedup
+  \item[\(S_p(n)>p\)] superlinearer Speedup
+\end{description}
 
 
 
