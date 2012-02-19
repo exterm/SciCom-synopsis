@@ -403,6 +403,45 @@ Genauigkeitsordnung 4, Exaktheitsgrad 3
 \section{IPython}
 
 
+\subsection{Was ist das?}
+\begin{itemize}
+  \item Interaktives Rechensystem für parallele Berechnungen
+  \item Architektur:
+    \begin{itemize}
+      \item beliebig viele Engines (mit queues), die Code ausführen
+      \item jede Engine gehört genau einem Controller
+      \item ein Controller kann beliebig viele Engines haben
+      \item ein Client kann beliebig viele Controller steuern
+    \end{itemize}
+  \item einfache Datenparallelität durch paralleles \texttt{map}
+\end{itemize}
+
+
+\subsection{Befehlsausführung}
+\begin{itemize}
+  \item \texttt{execute} für explizite Ausführung von Python-Codeschnipseln auf bestimmten Engines
+  \item blockierend oder mit Warte-Objekt (\texttt{PendingResult})
+  \item \emph{magische} Kommandos: \texttt{\%px} führt ein Kommando parallel auf allen Engines aus
+\end{itemize}
+
+\subsection{Objekte kopieren}
+\begin{itemize}
+  \item mit \texttt{push} und \texttt{pull} können Daten zwischen Client und Engines kopiert werden (deep copy)
+  \item Funktionen mit \texttt{push\_function} und \texttt{pull\_function}
+  \item verteilte Dictionaries erledigen Verteilungsarbeit automatisch
+  \item \texttt{scatter} und \texttt{gather} teilen Listenelemente automatisch auf Engines auf und sammeln die Liste wieder zusammen
+\end{itemize}
+
+
+\subsection{\texttt{Task}-Schnittstelle}
+\begin{itemize}
+  \item nicht Engine-orientiert
+  \item \texttt{map}-Funktionalität mit Load Balancing
+  \item Tasks repräsentieren Aufgaben, können einfach im Kontext eines \texttt{TaskClient} gestartet werden
+  \item der \texttt{TaskClient} kümmert sich um Art und Ausführung der Verteilung inkl.\ Load Balancing
+\end{itemize}
+
+
 
 \section{Leistungsmaße}
 
