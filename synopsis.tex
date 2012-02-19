@@ -663,14 +663,38 @@ Verteilung auf die Prozessoren vor der Laufzeit. Vorgehensweise:
 
 
 \subsection{Parallele LU-Faktorisierung}
---- hier Text einfügen ---
+\begin{itemize}
+  \item Idee: Datenparallelität
+  \item Zeilen werden ``abwechselnd'' auf die Prozessoren aufgeteilt:\\
+    Bei \(p\) Prozessoren wird mit
+    \[
+    q=((i-1)\bmod p)+1
+    \]
+    die Zeile \(i\) dem Prozessor \(P_q\) zugeordnet.\\
+    In anderen Worten:\\
+    Bei \(p\) Prozessoren wird dem Prozessor \(P_q\) die \(q\)-te Zeile sowie von da aus jede \(p\)-te Zeile zugeordnet
+\end{itemize}
+Algorithmus:
+\begin{enumerate}
+  \item Jeder Prozessor bestimmt unter den seiner Zeilen, die eine Zeilennummer \(\ge k\) haben, diejenige mit dem größten Wert in der Spalte \(k\)
+  \item ein Koordinator bestimmt aus den Vorschlägen (lokalen Maxima) aller Prozessoren das globale Maximum und teilt dies allen Prozessoren mit
+  \item die Prozessoren, die die Zeile \(k\) bzw.\ die Pivotzeile haben, tauschen diese aus (einfacher, wenn beide Zeilen bei dem selben Prozessor liegen, aber Zufall)
+  \item Verteilen der Pivotzeile an alle Prozessoren für Elimination
+  \item jeder Prozessor berechnet lokal die Eliminationsfaktoren für alle seine Zeilen
+  \item jeder Prozessor berechnet lokal die Zeilenaddition (Elimination)
+\end{enumerate}
 
 
+
+
+
+\end{document}
 
 
 
 
 %%%%%%%%%%
+
 
 
 
@@ -692,7 +716,3 @@ Verteilung auf die Prozessoren vor der Laufzeit. Vorgehensweise:
   \renewcommand{\labelitemi}{+}%
   \item Vorteile
 \end{itemize}
-
-
-
-\end{document}
