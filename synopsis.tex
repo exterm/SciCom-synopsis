@@ -560,19 +560,75 @@ Eine Anwendung heisst \emph{skalierbar}, wenn die zur Problemlösung benötigte 
 
 
 \subsection{Allgemeines}
---- hier Text einfügen ---
+
+\subsubsection*{Problemstellung}
+\begin{itemize}
+  \item Wie kann ein Problem parallel gelöst werden?
+  \item Untersuchung der Problemstruktur
+  \item Systematische Zerlegung in Teilprobleme
+\end{itemize}
+
+\subsubsection*{Inhärenter Parallelismus}
+\begin{itemize}
+  \item ein Problem besteht aus Teilproblemen, die weder funktionale Abhängigkeiten noch gemeinsame Daten haben
+  \item einfache Verteilung
+  \item wenig Kommunikation \(\Rightarrow\) wenig Overhead
+  \item beinahe linearer Speedup möglich
+  \item LAufzeit kann sich aber auch hier erheblich verlängern, wenn nicht alle Prozesse gleich lange für ihre Aufgabe brauchen (verschieden aufwändige Teilprobleme / verschieden schnelle Prozessoren)
+\end{itemize}
+
+
+\subsection{Divide and Conquer}
+\begin{itemize}
+  \item Unterteile Problem rekursiv und löse kleinstmögliche Teilprobleme
+  \item Speedup im Idealfall linear
+  \item Aber: Aufteilenund Kombinieren kostet auch
+\end{itemize}
 
 
 \subsection{Funktionale Zerlegung}
---- hier Text einfügen ---
+\begin{itemize}
+  \item Unterteilung des Problems in Arbeitsschritte, Aufgaben oder Funktionen
+  \item Funktionen arbeiten an unabhängigen Teilen des Gesamtproblems
+  \item evtl.\ Pipelining für voneinander abhängige Verarbeitungsschritte
+  \item auch hier theoretisch linearer Speedup möglich
+\end{itemize}
 
 
 \subsection{Datenzerlegung}
---- hier Text einfügen ---
+
+\subsubsection*{Master-Worker-Schema}
+\begin{itemize}
+  \item Einmalige Zerlegung der Daten oder des Eingabebereichs
+\end{itemize}
+
+\subsubsection*{Berechnungsbäume}
+\begin{itemize}
+  \item rekursive Mehrfachzerlegung der Daten oder des Eingabebereichs
+  \item für Berechnungsbäume, z.B.
+    \begin{itemize}
+      \item Sortieralgorithmen
+      \item lexikalische Analyse eines Strings
+    \end{itemize}
+\end{itemize}
 
 
-\subsection{Funktions- und Datenzerlegung}
---- hier Text einfügen ---
+\subsection{Daten-Allokation}
+
+\subsubsection*{Statische Allokation}
+Verteilung auf die Prozessoren vor der Laufzeit. Vorgehensweise:
+\begin{enumerate}
+  \item \emph{Partitionierung} --- Funktionale Zerlegung, Datenzerlegung, identische Daten auf Knoten replizieren
+  \item \emph{Kommunikationsplanung} --- Festlegung von Kommunikationsmustern und -Algorithmen, möglichst effiziente Kommunikation mit minimaler Blockierung der Prozesse
+  \item \emph{Bündelung} --- Teilaufgaben je nach Leistungsfähigkeit und Kosten der Hardware mehr oder weniger stark gruppieren
+  \item \emph{Mapping} --- Zuordnung der Teilaufgaben zu spezifischen Knoten. Intensiv kommunizierende Teilaufgaben nach Möglichkeit dem selben Prozessor zuordnen
+\end{enumerate}
+
+\subsubsection*{Dynamische Allokation}
+\begin{itemize}
+  \item Lastausgleicher entscheidet zur Laufzeit, an welchen Prozessor das nächste Arbeitspaket vergeben wird
+  \item Ausfall eines Prozessors kann kompensiert werden
+\end{itemize}
 
 
 
