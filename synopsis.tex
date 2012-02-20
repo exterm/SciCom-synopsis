@@ -439,24 +439,84 @@ Das ist ein explizites Verfahren und konvergiert für \(h\rightarrow 0\) mit der
 \section{Interpolation}
 
 
+\subsection{Definition}
+Interpolation hat zwei Aspekte:
+\begin{itemize}
+  \item Annähern einer Funktion durch eine einfachere Funktion zur Reduzierung des Aufwands weiterer Berechnungen
+  \item Konstruktion einer stetigen Funktion als Interpretation einer Datenmenge
+    \begin{itemize}
+      \renewcommand{\labelitemii}{\Large{!}}%
+      \item Für diesen Fall wird üblicherweise als Bedingung vorgegeben, dass die Interpolationsfunktion die Stützstellen exakt abbildet
+    \end{itemize}
+\end{itemize}
+
+
+\subsection{Taylor-Polynome}
+\begin{itemize}
+  \item Approximation durch Reihe von Polynomen
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{\(-\)}%
+  \item aufwändige Berechnung, da \(n\) Ableitungen notwendig
+  \item nähert nur in bestimmter Umgebung von \(x_0\) gut an
+\end{itemize}
+\begin{itemize}
+  \renewcommand{\labelitemi}{+}%
+  \item gute, einfache Näherung in bestimmtem Bereich
+\end{itemize}
+
+
+\subsection{Interpolationsarten}
+\begin{itemize}
+  \item polynomial
+  \item trigonometrisch
+  \item rational
+\end{itemize}
+
+
 \subsection{Langrange-Interpolation}
---- hier Text einfügen ---
-
-
-\subsection{Runge-Interpolation}
---- hier Text einfügen ---
+\begin{itemize}
+  \item polynomiale Interpolation
+  \item Prinzip: Es gibt genau ein Polynom vom Grad \(\le n\), dass \(n+1\) Stützstellen exakt darstellt. Wenn es zwei gäbe, wäre ihre Differenz wieder ein Polynom vom Grad \(\le n\), hätte aber \(n+1\) Nullstellen an den Stützstellen. Damit muss dieses Polynom das Nullpolynom sein
+  \item finde das Interpolationspolynom \(\Pi_n(x)\)
+  \item bilde charakteristische Polynome \(\phi_k(x)\) für alle Stützstellen
+    \[\phi_k(x)=\prod^n_{j=0,j\ne k}\frac{x-x_j}{x_k-x_j},\; k=0,\ldots,n\]
+    diese haben an ``ihrer'' Stützstelle den Wert 1, an allen anderen Stützstellen den Wert 0
+  \item das Interpolationspolynom ergibt sich dann zu
+    \[\Pi_n(x)=\sum^n_{k=0}y_k\phi_k(x)\]
+    Es existiert immer und ist eindeutig bestimmt
+  \item Achtung: der Interpolationsfehler auf die gesamte Originalfunktion bezogen kann bei äquidistanten Stützstellen gegen unendlich gehen! (\emph{Runge-Phänomen}: Interpolation mit äquidistanten Stützstellen auf der Runge-Funktion)
+\end{itemize}
 
 
 \subsection{Chebyshev-Interpolation}
---- hier Text einfügen ---
+\begin{itemize}
+  \item Idee: Vermeidung des Runge-Phänomens durch nicht-äquidistante Stützstellen
+  \item stattdessen Stützstellen an Chebyshev-Knoten (im Intervall \([a,b]\)):
+    \[x_i=\frac{a+b}{2}-\frac{b-a}{2}\cos(\pi i/n),\; i=0,\ldots,n\]
+  \item so nimmt die Stützstellendichte zum Rand des Intervalls zu
+  \item \(\Rightarrow\) das Interpolationspolynom konvergiert (immer!) gegen \(f\) für \(n\rightarrow\infty\)
+\end{itemize}
 
 
 \subsection{Stückweise Lineare Interpolation}
---- hier Text einfügen ---
+\begin{itemize}
+  \item ähnlich der Trapezformel beim numerischen Integrieren
+  \item eignet sich für nicht-stetige Funktionen und Datensätze, die nicht auf die Chebyshev-Knoten passen
+  \item Interpolation von Teilintervallen durch Geraden (Äquidistanz egal)
+  \item Geraden verbinden Funktionswerte an den Intervallgrenzen
+  \item konvergiert für \(h\rightarrow 0\) (\(h\): Teilintervallbreite)
+\end{itemize}
 
 
 \subsection{Spline-Funktionen}
---- hier Text einfügen ---
+\begin{itemize}
+  \item ähnlich wie stückweise lineare Interpolation, aber nicht mit Geraden sondern Polynomen höheren Grades (\(s_n\))
+  \item besonderer Augenmerk auf den Nahtstellen --- diese sollen differenzierbar sein
+  \item erste und zweite Ableitung sollen in den Knoten stetig sein
+  \item daraus entsteht ein lineares Gleichungssystem mit \(4n\) Gleichungen
+  \item zur eindeutigen Bestimmung werden nämlich nicht-notwendige Bedingungen dazu genommen, wie \(s_n''(x_0)=0\) oder \(s_n''(x_n)=0\)
+\end{itemize}
 
 
 
