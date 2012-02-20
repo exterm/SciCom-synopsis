@@ -374,15 +374,65 @@ gelöst, wobei \(L\) eine untere und \(U\) eine obere Dreiecksmatrix ist. Der Tr
 
 
 \subsection{Allgemeines}
---- hier Text einfügen ---
+Eine \emph{Differentialgleichung} ist eine Gleichung, die mindestens eine Ableitung einer unbekannten Funktion enthält. Gesucht ist die unbekannte Funktion. Allgemeine Form:
+\[
+y'(t)=f(t,y(t))
+\]
+\begin{itemize}
+  \item Hier nur \emph{gewöhnliche} Differentialgleichungen \emph{erster Ordnung}
+  \item \emph{gewöhnlich} ist eine Differentialgleichung, wenn sie nur Ableitungen bzgl.\ einer einzigen Variablen enthält
+  \item die \emph{Ordnung} einer Differentialgleichung ist die höchste Ordnung der vorkommenden Ableitungen
+\end{itemize}
+
+
+\subsection{Cauchy-Probleme}
+\begin{itemize}
+  \item Differentialgleichungen sind im Allgemeinen nicht eindeutig lösbar
+  \item Lösungsraum kann durch zusätzliche Bedingung (\emph{Anfangswert}: \(y(0) = bla\)) auf eine Lösung eingeschränkt werden
+  \item eine Differentialgleichung mit dem Anfangswert als zusätzlicher Bedingung an die Stammfunktion heisst \emph{Anfangswertproblem} oder \emph{Cauchy-Problem}
+  \item Lösbar, wenn die Funktion \(f(t,y(t))\)
+    \begin{itemize}
+      \item im ersten Parameter stetig und
+      \item im zweiten Parameter Lipschitz-stetig ist
+    \end{itemize}
+\end{itemize}
 
 
 \subsection{Euler-Verfahren}
---- hier Text einfügen ---
 
+\subsubsection*{Art der Verfahren}
+Beide hier vorgestellten Euler-Verfahren sind sog.\ \emph{Einschrittverfahren}, da sie zur Berechnung von \(u_{n+1}\) lediglich den vorherigen Wert verwenden, aber nicht weiter in die Vergangenheit der Berechnung schauen.
+
+\subsubsection*{explizites Euler-Verfahren}
+Das explizite Euler-Verfahren verwendet die Vorwärtsdifferenz und den Anfangswert zur Abschätzung der Stammfunktion \(y\) (\(u_0 = y_0\), \(u_n\) ist der Schätzwert für \(y(t_n)\)):
+\[\frac{u_{n+1}-u_n}{h}=f(t_n,u_n)\]
+\[\Leftrightarrow u_{n+1}=u_n+h\cdot f(t_n,u_n)\]
+Dabei wird vom Anfangswert (\(t_0=0\)) ausgehend \(y'(t_n)\) (Steigung von \(y\) an der Stelle \(t_n\)) und damit in Abhängigkeit von der Intervallbreite \(h\) ein neuer Schätzpunkt berechnet. Von diesem aus wird das Vorgehen wiederholt.
+\begin{itemize}
+  \renewcommand{\labelitemi}{\Large{!}}%
+  \item das explizite Euler-Verfahren konvergiert für \(h\rightarrow 0\) mit der Ordnung 1 (linear).
+\end{itemize}
+
+
+\subsubsection*{implizites Euler-Verfahren}
+Das implizite Euler-Verfahren verwendet die Rückwärtsdifferenz und den Anfangswert zur Abschätzung der Stammfunktion \(y\):
+\[u_{n+1}=u_n+h\cdot f(t_{n+1},u_{n+1})\]
+\(u_{n+1}\) ist hier implizit definiert (auch von sich selbst abhängig), daher der Name des Verfahrens.
+\begin{itemize}
+  \item aufgrund impliziter Darstellung viel rechenaufwändiger als explizites Verfahren
+  \item aber stabiler!
+\end{itemize}
+
+\subsubsection*{Crank-Nicolsen-Verfahren}
+Hier wird der Mittelwert aus den Steigungs-Schätzwerten der beiden Euler-Verfahren (Vorwärts- und Rückwärtsdifferenz) verwendet:
+\[u_{n+1}=u_n+\frac{h}{2}(f_n+f_{n+1})\]
+Offensichtlich ist dieses Verfahren ebenfall implizit. Allerdings konvergiert es für \(h\rightarrow 0\) mit der Ordnung 2 (quadratisch).
 
 \subsection{Verfahren höherer Ordnung}
---- hier Text einfügen ---
+Ein Mehrschritt- oder Runge-Kutta-Verfahren:
+\[u_{n+1}=u_n+\frac{h}{6}(K_1+2K_2+2K_3+K_4)\]
+--- genaue Definition irrelevant ---\\
+Das ist ein explizites Verfahren und konvergiert für \(h\rightarrow 0\) mit der Ordnung 4. Es erfordert 4 Auswertungen von \(f\) in jedem Schritt.
 
 
 
